@@ -18,6 +18,13 @@ class QuizVC: UIViewController {
     var scoreLabel: UILabel!
     var quizStatus: UILabel!
     
+    var quizCountry: String!
+    var questionBank: QuestionBank!
+    var quizQuestions = [Question]()
+    var questionNumber: Int!
+    var numberOfQuestions: Int!
+    var score: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +36,8 @@ class QuizVC: UIViewController {
         questionLabel.clipsToBounds = true
         questionLabel.textColor = .white
         questionLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
-        questionLabel.adjustsFontSizeToFitWidth = true
+        questionLabel.adjustsFontSizeToFitWidth = false
+        questionLabel.numberOfLines = 0
         questionLabel.textAlignment = .center
         questionLabel.text = "QUESTION"
         view.addSubview(questionLabel)
@@ -79,6 +87,38 @@ class QuizVC: UIViewController {
         view.addSubview(quizStatus)
         
         setupConstraints()
+        
+        
+        /*
+         Once all the UI is loaded & laid out correctly on the screen,
+         retrieve the country for the quiz that was passed from the cell clicked in the previous table view controller.
+         For now, I will hardcode it to be "France".
+         */
+        quizCountry = "France"
+        questionBank = QuestionBank(country: quizCountry)
+        quizQuestions = questionBank.listOfQuestions
+        score = 0
+        questionNumber = 0
+        numberOfQuestions = quizQuestions.count
+        
+        updateUI()
+        nextQuestion()
+    }
+    
+    func updateUI() {
+        scoreLabel.text = "Score: " + String (score)
+        if questionNumber + 1 > numberOfQuestions {     //game over, avoid having 11/10. 
+            quizStatus.text = String (numberOfQuestions) + "/\(numberOfQuestions!)"
+        }
+        else {
+            quizStatus.text = String (questionNumber + 1) + "/\(numberOfQuestions!)"
+        }
+    }
+    
+    func nextQuestion() {
+        if questionNumber < numberOfQuestions {
+            questionLabel.text = quizQuestions[questionNumber].questionText
+        }
     }
     
     func setupConstraints() {
@@ -120,10 +160,30 @@ class QuizVC: UIViewController {
     }
     
     @objc func truePressed(sender: UIButton) {
-        print("TRUE")
+        verifyAnswer(choice: true)
+        nextQuestion()
     }
     @objc func falsePressed(sender: UIButton) {
-        print("FALSE")
+        verifyAnswer(choice: false)
+        nextQuestion()
+    }
+    
+    
+    func verifyAnswer(choice: Bool) {
+        if questionNumber < numberOfQuestions {
+            let correctAnswer = quizQuestions[questionNumber].answer
+            
+            if choice == correctAnswer {
+                print("Good answer.")
+                score += 1
+                questionNumber += 1
+            }
+            else {
+                print("Wrong answer.")
+                questionNumber += 1
+            }
+        }
+        updateUI()
     }
     
 

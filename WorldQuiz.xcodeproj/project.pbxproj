@@ -14,6 +14,8 @@
 		095BE83324428EE000F78313 /* WorldQuiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 095BE83124428EE000F78313 /* WorldQuiz.xcdatamodeld */; };
 		095BE83524428EE300F78313 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 095BE83424428EE300F78313 /* Assets.xcassets */; };
 		095BE83824428EE300F78313 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 095BE83624428EE300F78313 /* LaunchScreen.storyboard */; };
+		095DA011244297D3001865CE /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DA010244297D3001865CE /* Question.swift */; };
+		095DA01324429848001865CE /* QuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DA01224429848001865CE /* QuestionBank.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		095BE83424428EE300F78313 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		095BE83724428EE300F78313 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		095BE83924428EE300F78313 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		095DA010244297D3001865CE /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		095DA01224429848001865CE /* QuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBank.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				095BE83124428EE000F78313 /* WorldQuiz.xcdatamodeld */,
+				095DA010244297D3001865CE /* Question.swift */,
+				095DA01224429848001865CE /* QuestionBank.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,10 +171,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				095DA011244297D3001865CE /* Question.swift in Sources */,
 				095BE82D24428EE000F78313 /* QuizVC.swift in Sources */,
 				095BE82924428EE000F78313 /* AppDelegate.swift in Sources */,
 				095BE82B24428EE000F78313 /* SceneDelegate.swift in Sources */,
 				095BE83324428EE000F78313 /* WorldQuiz.xcdatamodeld in Sources */,
+				095DA01324429848001865CE /* QuestionBank.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
