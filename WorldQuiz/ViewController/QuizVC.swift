@@ -17,6 +17,7 @@ class QuizVC: UIViewController {
     var trueButton: UIButton!
     var falseButton: UIButton!
     var scoreLabel: UILabel!
+    var highScoreLabel: UILabel!
     var quizStatus: UILabel!
     
     var quizCountry: String!
@@ -76,6 +77,17 @@ class QuizVC: UIViewController {
         scoreLabel.text = "Score: 7"
         view.addSubview(scoreLabel)
         
+        highScoreLabel = UILabel()
+        highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        highScoreLabel.contentMode = .scaleAspectFill
+        highScoreLabel.clipsToBounds = true
+        highScoreLabel.textColor = .white
+        highScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
+        highScoreLabel.adjustsFontSizeToFitWidth = true
+        highScoreLabel.textAlignment = .center
+        highScoreLabel.text = "High Score: 7"
+        view.addSubview(highScoreLabel)
+        
         quizStatus = UILabel()
         quizStatus.translatesAutoresizingMaskIntoConstraints = false
         quizStatus.contentMode = .scaleAspectFill
@@ -93,6 +105,7 @@ class QuizVC: UIViewController {
         /*
          Once all the UI is loaded & laid out correctly on the screen,
          retrieve the country for the quiz that was passed from the cell clicked in the previous table view controller.
+         Make sure to pass the string with first letter capitalized, important to retrieve high score.
          For now, I will hardcode it to be "France".
          */
         quizCountry = "France"
@@ -108,6 +121,7 @@ class QuizVC: UIViewController {
     
     func updateUI() {
         scoreLabel.text = "Score: " + String (score)
+        highScoreLabel.text = "High Score: " + String (getHighScore())
         if questionNumber + 1 > numberOfQuestions {     //game over, avoid having 11/10.
             quizStatus.text = String (numberOfQuestions) + "/\(numberOfQuestions!)"
         }
@@ -121,6 +135,7 @@ class QuizVC: UIViewController {
             questionLabel.text = quizQuestions[questionNumber].questionText
         }
         else {
+            saveHighScore()
             var endMessage = ""
             if score > numberOfQuestions - 1 {
                 print("YOU PASSED.")
@@ -142,6 +157,24 @@ class QuizVC: UIViewController {
 
             present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func saveHighScore() {
+        let quizScoreKey = "\(quizCountry)-highscore"
+        let defaults = UserDefaults.standard
+        let lastHighScore = defaults.integer(forKey: quizScoreKey)
+        print("Last high score = \(lastHighScore)")
+        if score > lastHighScore {
+            defaults.set(score, forKey: quizScoreKey)
+            print("NEW HIGH SCORE = \(score)")
+        }
+    }
+    
+    func getHighScore() -> Int {
+        let quizScoreKey = "\(quizCountry)-highscore"
+        let defaults = UserDefaults.standard
+        var lastHighScore = defaults.integer(forKey: quizScoreKey)
+        return lastHighScore
     }
     
     func restart() {
@@ -192,6 +225,13 @@ class QuizVC: UIViewController {
             quizStatus.widthAnchor.constraint(equalToConstant: 52),
             quizStatus.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             quizStatus.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+        ])
+        
+        NSLayoutConstraint.activate([
+            highScoreLabel.heightAnchor.constraint(equalToConstant: 21),
+            highScoreLabel.widthAnchor.constraint(equalToConstant: 116),
+            highScoreLabel.trailingAnchor.constraint(equalTo: scoreLabel.trailingAnchor),
+            highScoreLabel.bottomAnchor.constraint(equalTo: scoreLabel.topAnchor, constant: -5)
         ])
     }
     
