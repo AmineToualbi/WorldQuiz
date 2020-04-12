@@ -16,6 +16,7 @@
 		095BE83824428EE300F78313 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 095BE83624428EE300F78313 /* LaunchScreen.storyboard */; };
 		095DA011244297D3001865CE /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DA010244297D3001865CE /* Question.swift */; };
 		095DA01324429848001865CE /* QuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DA01224429848001865CE /* QuestionBank.swift */; };
+		D33D468A707A15AA9D480B31 /* Pods_WorldQuiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801FBE9C742126B52F6010C7 /* Pods_WorldQuiz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,9 @@
 		095BE83924428EE300F78313 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		095DA010244297D3001865CE /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		095DA01224429848001865CE /* QuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBank.swift; sourceTree = "<group>"; };
+		3D17203F7948FF705ECCBD98 /* Pods-WorldQuiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorldQuiz.debug.xcconfig"; path = "Target Support Files/Pods-WorldQuiz/Pods-WorldQuiz.debug.xcconfig"; sourceTree = "<group>"; };
+		52F363E25ADAD95C43C554B6 /* Pods-WorldQuiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorldQuiz.release.xcconfig"; path = "Target Support Files/Pods-WorldQuiz/Pods-WorldQuiz.release.xcconfig"; sourceTree = "<group>"; };
+		801FBE9C742126B52F6010C7 /* Pods_WorldQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorldQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D33D468A707A15AA9D480B31 /* Pods_WorldQuiz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +53,8 @@
 			children = (
 				095BE82724428EE000F78313 /* WorldQuiz */,
 				095BE82624428EE000F78313 /* Products */,
+				5E55B1CB2F181FF7FF44E3F3 /* Pods */,
+				81ED6C68CBDD8F01EC104C17 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +107,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5E55B1CB2F181FF7FF44E3F3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3D17203F7948FF705ECCBD98 /* Pods-WorldQuiz.debug.xcconfig */,
+				52F363E25ADAD95C43C554B6 /* Pods-WorldQuiz.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		81ED6C68CBDD8F01EC104C17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				801FBE9C742126B52F6010C7 /* Pods_WorldQuiz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,9 +132,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 095BE83C24428EE300F78313 /* Build configuration list for PBXNativeTarget "WorldQuiz" */;
 			buildPhases = (
+				C6B5393BFBC7232F0F0F9DA8 /* [CP] Check Pods Manifest.lock */,
 				095BE82124428EE000F78313 /* Sources */,
 				095BE82224428EE000F78313 /* Frameworks */,
 				095BE82324428EE000F78313 /* Resources */,
+				75B88E762235DE4D84429221 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -165,6 +192,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		75B88E762235DE4D84429221 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WorldQuiz/Pods-WorldQuiz-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WorldQuiz/Pods-WorldQuiz-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WorldQuiz/Pods-WorldQuiz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6B5393BFBC7232F0F0F9DA8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WorldQuiz-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		095BE82124428EE000F78313 /* Sources */ = {
@@ -318,6 +387,7 @@
 		};
 		095BE83D24428EE300F78313 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D17203F7948FF705ECCBD98 /* Pods-WorldQuiz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -336,6 +406,7 @@
 		};
 		095BE83E24428EE300F78313 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52F363E25ADAD95C43C554B6 /* Pods-WorldQuiz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

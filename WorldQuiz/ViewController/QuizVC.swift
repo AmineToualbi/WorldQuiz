@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class QuizVC: UIViewController {
     
@@ -107,7 +108,7 @@ class QuizVC: UIViewController {
     
     func updateUI() {
         scoreLabel.text = "Score: " + String (score)
-        if questionNumber + 1 > numberOfQuestions {     //game over, avoid having 11/10. 
+        if questionNumber + 1 > numberOfQuestions {     //game over, avoid having 11/10.
             quizStatus.text = String (numberOfQuestions) + "/\(numberOfQuestions!)"
         }
         else {
@@ -119,6 +120,41 @@ class QuizVC: UIViewController {
         if questionNumber < numberOfQuestions {
             questionLabel.text = quizQuestions[questionNumber].questionText
         }
+        else {
+            var endMessage = ""
+            if score > numberOfQuestions - 1 {
+                print("YOU PASSED.")
+                endMessage = "Congratulations, you passed!"
+            }
+            else {
+                print("YOU FAILED.")
+                endMessage = "You failed, try again!"
+            }
+            
+            let alert = UIAlertController(title: "End of the Quiz!", message: endMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { (action: UIAlertAction!) in
+                self.restart()
+            }))
+
+            alert.addAction(UIAlertAction(title: "Go To Main Menu", style: .cancel, handler: { (action: UIAlertAction!) in
+                self.goToMainMenu()
+            }))
+
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func restart() {
+        questionNumber = 0
+        score = 0
+        updateUI()
+        nextQuestion()
+    }
+    
+    
+    //TODO - THIS FUNCTION SHOULD GO BACK TO THE MAIN UITABLEVIEW.
+    func goToMainMenu() {
+        
     }
     
     func setupConstraints() {
@@ -175,15 +211,32 @@ class QuizVC: UIViewController {
             
             if choice == correctAnswer {
                 print("Good answer.")
+                showHUD(success: true)
                 score += 1
                 questionNumber += 1
             }
             else {
                 print("Wrong answer.")
+                showHUD(success: false)
                 questionNumber += 1
             }
         }
         updateUI()
+    }
+    
+    func showHUD(success: Bool) {
+        HUD.dimsBackground = false
+        HUD.allowsInteraction = false
+        if success {
+            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+            PKHUD.sharedHUD.show()
+            PKHUD.sharedHUD.hide(afterDelay: 1.0)
+        }
+        else {
+            PKHUD.sharedHUD.contentView = PKHUDErrorView()
+            PKHUD.sharedHUD.show()
+            PKHUD.sharedHUD.hide(afterDelay: 0.5)
+        }
     }
     
 
