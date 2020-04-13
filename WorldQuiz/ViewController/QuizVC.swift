@@ -29,14 +29,14 @@ class QuizVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .blue
+        //blue is bad taste
+        //view.backgroundColor = .blue
                 
         questionLabel = UILabel()
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         questionLabel.contentMode = .scaleAspectFill
         questionLabel.clipsToBounds = true
-        questionLabel.textColor = .white
+        questionLabel.textColor = .black //changed to black to accommodate white background
         questionLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         questionLabel.adjustsFontSizeToFitWidth = false
         questionLabel.numberOfLines = 0
@@ -70,7 +70,7 @@ class QuizVC: UIViewController {
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         scoreLabel.contentMode = .scaleAspectFill
         scoreLabel.clipsToBounds = true
-        scoreLabel.textColor = .white
+        scoreLabel.textColor = .black //changed to black to accommodate white background
         scoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         scoreLabel.adjustsFontSizeToFitWidth = true
         scoreLabel.textAlignment = .center
@@ -81,7 +81,7 @@ class QuizVC: UIViewController {
         highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
         highScoreLabel.contentMode = .scaleAspectFill
         highScoreLabel.clipsToBounds = true
-        highScoreLabel.textColor = .white
+        highScoreLabel.textColor = .black //changed to black to accommodate white background
         highScoreLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         highScoreLabel.adjustsFontSizeToFitWidth = true
         highScoreLabel.textAlignment = .center
@@ -92,7 +92,7 @@ class QuizVC: UIViewController {
         quizStatus.translatesAutoresizingMaskIntoConstraints = false
         quizStatus.contentMode = .scaleAspectFill
         quizStatus.clipsToBounds = true
-        quizStatus.textColor = .white
+        quizStatus.textColor = .black //changed to black to accommodate white background
         quizStatus.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
         quizStatus.adjustsFontSizeToFitWidth = true
         quizStatus.textAlignment = .center
@@ -108,7 +108,7 @@ class QuizVC: UIViewController {
          Make sure to pass the string with first letter capitalized, important to retrieve high score.
          For now, I will hardcode it to be "France".
          */
-        quizCountry = "France"
+        //quizCountry = "France"
         questionBank = QuestionBank(country: quizCountry)
         quizQuestions = questionBank.listOfQuestions
         score = 0
@@ -183,11 +183,9 @@ class QuizVC: UIViewController {
         updateUI()
         nextQuestion()
     }
-    
-    
-    //TODO - THIS FUNCTION SHOULD GO BACK TO THE MAIN UITABLEVIEW.
+
     func goToMainMenu() {
-        
+        navigationController?.popToRootViewController(animated: true)
     }
     
     func setupConstraints() {
